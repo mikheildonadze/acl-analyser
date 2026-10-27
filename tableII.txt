@@ -1,0 +1,17 @@
+R1#show access-lists
+Extended IP access list INTERNAL_TO_DMZ
+    10 permit ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+    20 deny tcp host 192.168.10.55 host 192.168.20.10 eq www
+    30 permit tcp host 192.168.10.100 any eq 443
+    40 permit tcp host 192.168.10.100 any eq 22
+    50 permit udp host 192.168.10.100 host 192.168.20.10 eq domain
+    60 deny udp host 192.168.10.100 host 192.168.20.10 eq domain
+    70 permit tcp 192.168.10.0 0.0.0.255 host 192.168.20.10 range 80 90
+    80 permit tcp host 192.168.10.55 host 192.168.20.10 eq www
+    90 deny icmp 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+    100 permit tcp 192.168.10.0 0.0.0.255 host 192.168.20.10 eq 8080
+    110 permit tcp 192.168.10.0 0.0.0.255 host 192.168.20.10 eq www
+    120 permit tcp host 192.168.10.200 203.0.113.0 0.0.0.255 eq 443
+    130 deny ip host 192.168.10.200 203.0.113.0 0.0.0.255
+    140 permit tcp host 192.168.10.200 host 203.0.113.50 eq 443
+    150 deny ip any any
